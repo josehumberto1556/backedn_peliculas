@@ -1,7 +1,3 @@
-¡Claro! Aquí tienes una plantilla de README.md completa para tu aplicación backend de películas, hecha con Express, Sequelize, TypeScript y MySQL, incluyendo la funcionalidad de "semillas" (seeders).
-
-Copia este contenido y pégalo en un archivo llamado README.md en la raíz de tu proyecto backend. Recuerda rellenar los [PLACEHOLDER] con tus detalles específicos.
-
 Backend de Gestión de Películas
 📝 Descripción del Proyecto
 Este es el componente backend de una aplicación de gestión de películas, construido con Express.js, Sequelize ORM y TypeScript, utilizando MySQL como base de datos. Proporciona una API RESTful para gestionar la información de películas, incluyendo operaciones CRUD (Crear, Leer, Actualizar, Eliminar) y funcionalidades de búsqueda.
