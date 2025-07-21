@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> </title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1><%= title %></h1>
+          <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+            <div class="alert alert-danger">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+        <% if (typeof successMessage !== 'undefined' && successMessage) { %>
+            <div class="alert alert-success">
+                <%= successMessage %>
+            </div>
+        <% } %>
+
+        <form action="/peliculas/editar/<%= pelicula.id %>" method="POST"> <div class="form-group">
+           
+            <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" value="<%= pelicula.title %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="director">Director:</label>
+                <input type="text" id="director" name="director" value="<%= pelicula.director %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="anio">Año:</label>
+                <input type="number" id="anio" name="anio" value="<%= pelicula.releaseYear %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <input type="text" id="genero" name="genero" value="<%= pelicula.genre %>">
+            </div>
+
+             <div class="form-group">
+                <label for="genero">Post Url Imagen:</label>
+                <img src="<%=pelicula.posterUrl%>" width="200" height="200"/>
+                <input type="text" id="poster" name="poster" value="<%=pelicula.posterUrl%>">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-warning">Actualizar Película</button>
+                <a href="/peliculas/admin" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

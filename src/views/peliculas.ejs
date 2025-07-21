@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Mi Portafolio</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1>Sección de Películas</h1>
+        <p>
+            <a href="/usuarios">Volver al Dashboard Principal</a>
+        </p>
+    </div>
+    
+        <% if (typeof successMessage !== 'undefined' && successMessage) { %>
+        <div class="alert alert-success" style="
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 10px 20px;
+            margin: 15px auto;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 800px;
+        ">
+            <%= successMessage %>
+        </div>
+    <% } %>
+
+    <div class="container">
+        <div class="controls-section">
+            <div class="action-buttons">
+                <a href="/peliculas/nuevo" class="btn btn-success">Añadir Nueva Película</a>
+            </div>
+
+              <form action="/peliculas/admin" method="GET" class="search-form">
+                <label for="searchTitle">Buscar por Título:</label>
+                <input type="text" id="searchTitle" name="searchTitle" placeholder="ej. Inception" value="<%= typeof queryTitle !== 'undefined' ? queryTitle : '' %>">
+                <button type="submit" class="btn btn-info">Buscar</button>
+                <% if (typeof queryTitle !== 'undefined' && queryTitle !== '') { %>
+                    <a href="/peliculas/admin" class="btn btn-secondary">Limpiar Búsqueda</a>
+                <% } %>
+            </form>
+        </div>
+
+        <h2 style="text-align: center; color: var(--primary-color);">Listado de Películas</h2>
+
+        <% if (peliculas && peliculas.length > 0) { %>
+            <ul class="user-list">
+                <% peliculas.forEach(function(pelicula) { %>
+                    <li class="user-card">
+                        <div class="user-info">
+                            <strong>ID:</strong> <span><%= pelicula.id %></span>
+                            <strong>Título:</strong> <span><%= pelicula.title %></span>
+                            <strong>Director:</strong> <span><%= pelicula.director %></span>
+                            <strong>Año:</strong> <span><%= pelicula.releaseYear %></span>
+                            <strong>Género:</strong> <span><%= pelicula.genre || 'N/A' %></span>
+                            <small>Creada: <%= pelicula.createdAt.toLocaleString() %></small>
+                        </div>
+                        <div class="actions">
+                            <a href="/peliculas/editar/<%= pelicula.id %>" class="btn btn-warning">Editar</a>
+                            <form action="/peliculas/eliminar/<%= pelicula.id %>" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar la película &quot;<%= pelicula.titulo %>&quot;?');">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p class="no-users-message">No hay películas registradas que coincidan con la búsqueda.</p>
+        <% } %>
+
+        
+    </div>
+</body>
+</html>

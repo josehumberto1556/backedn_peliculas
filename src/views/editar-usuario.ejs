@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1><%= title %>: <%= user.email %></h1> <p>Actualiza la información del usuario.</p>
+        <p><a href="/usuarios">Volver al Listado de Usuarios</a></p>
+    </div>
+
+    <div class="container">
+        <form action="/usuarios/editar-usuario/<%= user.id %>" method="POST" class="form-card">
+            <div class="form-group">
+                <label for="first_name">Nombre:</label>
+                <input type="text" id="first_name" name="first_name" value="<%= user.first_name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Apellido:</label>
+                <input type="text" id="last_name" name="last_name" value="<%= user.last_name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<%= user.email %>" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Nueva Contraseña (dejar en blanco para no cambiar):</label>
+                <input type="password" id="password" name="password" placeholder="********">
+            </div>
+            <div class="form-group">
+                <label for="role">Rol:</label>
+                <select id="role" name="role" required>
+                    <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>Usuario</option>
+                    <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Administrador</option>
+                   
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+                <a href="/usuarios" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

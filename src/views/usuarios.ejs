@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title %></title>
+<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+   <div class="dashboard-header">
+    <h1>Panel de Administración de Peliculas</h1>
+   <p>
+    <a href="/peliculas/admin">Ir a la Sección de Películas</a> </p>
+    |<a href="/logout">Cerrar Sesión</a>
+   </p>
+ </div>
+ 
+
+   <div class="container">
+    <div class="controls-section">
+     <div class="action-buttons">
+       <a href="/usuarios/registro" class="btn btn-primary">Registrar Nuevo Usuario</a>
+     </div>
+    <% if (typeof successMessage !== 'undefined' && successMessage) { %>
+        <div class="alert alert-success" style="
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 10px 20px;
+            margin: 15px auto;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 800px;
+        ">
+            <%= successMessage %>
+        </div>
+    <% } %>
+
+ <form action="/usuarios" method="GET" class="search-form">
+<label for="searchEmail">Buscar por Email:</label>
+ <input type="text" id="searchEmail" name="email" placeholder="ej. ejemplo@dominio.com" value="<%= typeof queryEmail !== 'undefined' ? queryEmail : '' %>">
+ <button type="submit" class="btn btn-info">Buscar</button>
+  <% if (typeof queryEmail !== 'undefined' && queryEmail !== '') { %>
+ <a href="/usuarios" class="btn btn-secondary">Limpiar Búsqueda</a>
+ <% } %>
+ </form>
+ </div>
+
+ <% if (users && users.length > 0) { %>
+  <ul class="user-list">
+  <% users.forEach(function(user) { %>
+ <li class="user-card">
+ <div class="user-info">
+ <strong>ID:</strong> <span><%= user.id %></span>
+ <strong>Nombre:</strong> <span><%= user.first_name %> <%= user.last_name %></span>
+   <strong>Email:</strong> <span><%= user.email %></span>
+ <small>Creado: <%= user.createdAt.toLocaleString() %></small>
+ </div>
+<div class="actions">
+<a href="/usuarios/editar-usuario/<%= user.id %>" class="btn btn-warning">Editar</a>
+ <form action="/usuarios/eliminar-usuario/<%= user.id %>" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a <%= user.firstName %> <%= user.lastName %>?');">
+<button type="submit" class="btn btn-danger">Eliminar</button>
+   </form>
+ </div>
+ </li>
+ <% }); %>
+ </ul>
+  <% } else { %>
+<p class="no-users-message">No hay usuarios registrados que coincidan con la búsqueda.</p>
+ <% } %>
+
+
+</div>
+</body>
+</html>

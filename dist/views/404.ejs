@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Página no encontrada</title>
+    <link rel="stylesheet" href="/css/dashboard.css"> <style>
+        /* Estilos específicos para la página 404 */
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a11cb 100%);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .error-container h1 {
+            font-size: 8em;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-container h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .error-container p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .error-container .btn {
+            background-color: var(--secondary-color); /* Usamos tu color secundario */
+            color: var(--dark-text); /* Color de texto que contraste bien */
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-container .btn:hover {
+            background-color: #f0f0f0; /* Un tono más claro al pasar el ratón */
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .error-container h1 {
+                font-size: 6em;
+            }
+            .error-container h2 {
+                font-size: 1.8em;
+            }
+            .error-container p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body class="error-body">
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>¡Página no encontrada!</h2>
+        <p>Lo sentimos, pero la página que buscas no existe o ha sido movida. Puedes volver al inicio o al dashboard.</p>
+        <a href="/" class="btn">Ir a la página de Login</a>
+    </div>
+</body>
+</html>
