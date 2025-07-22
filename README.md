@@ -1,7 +1,3 @@
-¡Claro! Aquí tienes tu README.md actualizado para reflejar los cambios de conexión a Aiven, la gestión de la tabla sequelizemeta y la estructura de config.json con __parsed_literal__.
-
-He puesto un especial énfasis en las secciones de Requisitos Previos y Configuración de la Base de Datos para guiar claramente al usuario.
-
 Backend de Gestión de Películas
 📝 Descripción del Proyecto
 Este es el componente backend de una aplicación de gestión de películas, construido con Express.js, Sequelize ORM y TypeScript, utilizando MySQL como base de datos. Proporciona una API RESTful para gestionar la información de películas, incluyendo operaciones CRUD (Crear, Leer, Actualizar, Eliminar) y funcionalidades de búsqueda.
