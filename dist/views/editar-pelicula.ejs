@@ -20,7 +20,8 @@
             </div>
         <% } %>
 
-        <form action="/peliculas/editar/<%= pelicula.id %>" method="POST"> <div class="form-group">
+        <form action="/peliculas/editar/<%= pelicula.id %>" method="POST"> 
+            <div class="form-group">
            
             <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" value="<%= pelicula.title %>" required>
@@ -49,7 +50,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-warning">Actualizar Película</button>
-                <a href="/peliculas/admin" class="btn btn-secondary">Cancelar</a>
+                <a href="/peli" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>

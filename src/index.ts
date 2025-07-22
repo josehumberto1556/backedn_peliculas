@@ -14,6 +14,7 @@ import sequelize  from './config/database';
 import usuarioRoutes from './routes/usuario.routes'; 
 import peliculaRoutes from './routes/pelicula.routes';
 import authRoutes     from './routes/auth.routes';
+import peliRoutes     from './routes/peli.routes';
 import { isAuthenticated } from './middlewares/authMiddleware'; 
 
 dotenv.config();
@@ -45,6 +46,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
+
 // 5. MIDDLEWARE DE AUTENTICACIÓN (GLOBAL)
 // app.use(isAuthenticated);
 app.get('/check-connection', (req, res) => {
@@ -63,6 +65,7 @@ app.use('/', authRoutes);
 app.use('/usuarios', usuarioRoutes)
 //ruta pelicula
 app.use('/peliculas', peliculaRoutes)
+app.use('/peli', peliRoutes)
 
 // 7. MIDDLEWARE DE MANEJO DE ERRORES (404)
 app.use((req, res, next) => {
@@ -73,12 +76,19 @@ app.use((req, res, next) => {
 const startServer = async () => {
   //await connectDB();local
   //no local
-  await sequelize.authenticate();
-  app.listen(PORT, () => {
-    console.log(`Escuchando desde el puerto http://localhost:${PORT}`);
-    console.log(`Environment: ${process.env.NODE_ENV}`);
-     console.log('Backend listo para recibir solicitudes del frontend.')
-  });
+   try {
+    await sequelize.authenticate();
+    console.log('✅ Conexión a la base de datos establecida correctamente.');
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+      console.log(`Environment: ${process.env.NODE_ENV}`);
+      console.log('Backend listo para recibir solicitudes del frontend.');
+    });
+  } catch (error) {
+    console.error('❌ Error al conectar a la base de datos o iniciar el servidor:', error);
+    process.exit(1);
+  }
 };
 
 startServer();

@@ -12,7 +12,8 @@ import { getPeliculas,
 const router = Router();
 
 // Ruta para mostrar el listado de películas
-router.get('/', getPeliculasJson); // Esta ruta ahora usa getPeliculasJson frotnend
+router.get('/', getPeliculasJson);
+ // Esta ruta ahora usa getPeliculasJson frotnend
 router.get('/:id', getPeliculaById);
 router.get('/admin', getPeliculas);
 router.get('/nuevo', mostrarRegistro); 

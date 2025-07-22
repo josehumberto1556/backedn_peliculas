@@ -18,6 +18,7 @@ const database_1 = __importDefault(require("./config/database"));
 const usuario_routes_1 = __importDefault(require("./routes/usuario.routes"));
 const pelicula_routes_1 = __importDefault(require("./routes/pelicula.routes"));
 const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
+const peli_routes_1 = __importDefault(require("./routes/peli.routes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 4000;
@@ -54,6 +55,7 @@ app.use('/', auth_routes_1.default);
 app.use('/usuarios', usuario_routes_1.default);
 //ruta pelicula
 app.use('/peliculas', pelicula_routes_1.default);
+app.use('/peli', peli_routes_1.default);
 // 7. MIDDLEWARE DE MANEJO DE ERRORES (404)
 app.use((req, res, next) => {
     // Establece el código de estado HTTP a 404
@@ -62,12 +64,19 @@ app.use((req, res, next) => {
 const startServer = async () => {
     //await connectDB();local
     //no local
-    await database_1.default.authenticate();
-    app.listen(PORT, () => {
-        console.log(`Escuchando desde el puerto http://localhost:${PORT}`);
-        console.log(`Environment: ${process.env.NODE_ENV}`);
-        console.log('Backend listo para recibir solicitudes del frontend.');
-    });
+    try {
+        await database_1.default.authenticate();
+        console.log('✅ Conexión a la base de datos establecida correctamente.');
+        app.listen(PORT, () => {
+            console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+            console.log(`Environment: ${process.env.NODE_ENV}`);
+            console.log('Backend listo para recibir solicitudes del frontend.');
+        });
+    }
+    catch (error) {
+        console.error('❌ Error al conectar a la base de datos o iniciar el servidor:', error);
+        process.exit(1);
+    }
 };
 startServer();
 //# sourceMappingURL=index.js.map

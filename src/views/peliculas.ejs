@@ -32,15 +32,15 @@
     <div class="container">
         <div class="controls-section">
             <div class="action-buttons">
-                <a href="/peliculas/nuevo" class="btn btn-success">Añadir Nueva Película</a>
+                <a href="/peli/nuevo" class="btn btn-success">Añadir Nueva Película</a>
             </div>
 
-              <form action="/peliculas/admin" method="GET" class="search-form">
+              <form action="/peli" method="GET" class="search-form">
                 <label for="searchTitle">Buscar por Título:</label>
                 <input type="text" id="searchTitle" name="searchTitle" placeholder="ej. Inception" value="<%= typeof queryTitle !== 'undefined' ? queryTitle : '' %>">
                 <button type="submit" class="btn btn-info">Buscar</button>
                 <% if (typeof queryTitle !== 'undefined' && queryTitle !== '') { %>
-                    <a href="/peliculas/admin" class="btn btn-secondary">Limpiar Búsqueda</a>
+                    <a href="/peli" class="btn btn-secondary">Limpiar Búsqueda</a>
                 <% } %>
             </form>
         </div>

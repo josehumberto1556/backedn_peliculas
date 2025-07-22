@@ -60,8 +60,8 @@ export const getPeliculas = async (req: Request, res: Response): Promise<void> =
         console.error('Error al obtener las películas para la vista:', error);
        
         const genericErrorMessage = encodeURIComponent('Error al cargar la lista de películas.');
-        res.redirect(`/peliculas/admin?errorMessage=${genericErrorMessage}`);
-
+        ///res.redirect(`/peliculas/admin?errorMessage=${genericErrorMessage}`);
+       res.status(500).send('Error interno del servidor al cargar las películas. Revisa los logs del backend.');
         // req.flash('error', 'Error al cargar la lista de películas.');
         // res.redirect('/peliculas');
     }
@@ -91,7 +91,7 @@ export const getPeliculaById = async (req: Request, res: Response): Promise<void
 
 export const mostrarRegistro = (req: Request, res: Response): void => {
      try {
-        res.render('registro-pelicula', { title: 'Registrar Nueva Película' });
+        res.render('registro_peli', { title: 'Registrar Nueva Película' });
     } catch (error: any) {
         console.error('Error rendering movie registration form:', error);
         res.status(500).send({ message: 'Error loading movie registration form', error: error.message });
@@ -107,7 +107,7 @@ export const mostrarEditar = async (req: Request, res: Response): Promise<void> 
             res.status(404).send('Usuario no encontrado');
             return;
         }
-        res.render('editar-pelicula', { title: 'Editar Usuario', pelicula: pelicula });
+        res.render('editar-pelicula', { title: 'Editar Pelicula', pelicula: pelicula });
     } catch (error: any) {
         console.error('Error rendering edit form:', error);
         res.status(500).send({ message: 'Error loading edit form', error: error.message });
@@ -122,7 +122,7 @@ export const crearPelicula = async (req: Request, res: Response): Promise<void> 
         let releaseYear=anio;
         let posterUrl=poster
         if (!title || !genre || !director || !releaseYear || !posterUrl) {
-          return res.redirect('/peliculas/nuevo?errorMessage=' + encodeURIComponent('Todos los campos obligatorios deben ser llenados.')); 
+          return res.redirect('/peli/nuevo?errorMessage=' + encodeURIComponent('Todos los campos obligatorios deben ser llenados.')); 
          }
 
         const newPelicula = await Pelicula.create({
@@ -134,7 +134,7 @@ export const crearPelicula = async (req: Request, res: Response): Promise<void> 
         });
 
         console.log('Película registrada con éxito:', newPelicula.toJSON());
-        res.redirect('/peliculas/admin?successMessage=' + encodeURIComponent('Película registrada con éxito.'));
+        res.redirect('/peli?successMessage=' + encodeURIComponent('Película registrada con éxito.'));
     } catch (error: any) {
         console.error('Error al registrar película:', error);
         res.status(500).send('Error al registrar la película.');
@@ -150,7 +150,7 @@ export const editarPelicula = async (req: Request, res: Response): Promise<void>
 
         if (!pelicula) {
             const errorMessage = encodeURIComponent('La película que intentas actualizar no fue encontrada.');
-            return res.redirect(`/peliculas?errorMessage=${errorMessage}`);
+            return res.redirect(`/peli?errorMessage=${errorMessage}`);
         }
 
         // Actualiza los campos de la película
@@ -163,7 +163,7 @@ export const editarPelicula = async (req: Request, res: Response): Promise<void>
         await pelicula.save();
 
         console.log('Película actualizada con éxito:', pelicula.toJSON());
-        res.redirect('/peliculas/admin?successMessage=' + encodeURIComponent('Película actualizada con éxito.'));
+        res.redirect('/peli?successMessage=' + encodeURIComponent('Película actualizada con éxito.'));
     } catch (error: any) {
         console.error('Error al actualizar película:', error);
         res.status(500).send('Error al actualizar la película.');
@@ -186,7 +186,7 @@ export const eliminarPelicula = async (req: Request, res: Response): Promise<voi
         await pelicula.destroy(); // Elimina la película de la base de datos
 
         console.log(`Película con ID ${id} eliminada exitosamente.`);
-        res.redirect('/peliculas/admin?successMessage='+encodeURIComponent('Pelicula eliminada con exito.')); // Redirige de vuelta al listado de películas
+        res.redirect('/peli?successMessage='+encodeURIComponent('Pelicula eliminada con exito.')); // Redirige de vuelta al listado de películas
     } catch (error: any) {
         console.error('Error al eliminar la película:', error);
         res.status(500).send({ message: 'Error al eliminar la película', error: error.message });

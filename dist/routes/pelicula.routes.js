@@ -4,7 +4,8 @@ const express_1 = require("express");
 const pelicula_controller_1 = require("../controllers/pelicula.controller");
 const router = (0, express_1.Router)();
 // Ruta para mostrar el listado de películas
-router.get('/', pelicula_controller_1.getPeliculasJson); // Esta ruta ahora usa getPeliculasJson frotnend
+router.get('/', pelicula_controller_1.getPeliculasJson);
+// Esta ruta ahora usa getPeliculasJson frotnend
 router.get('/:id', pelicula_controller_1.getPeliculaById);
 router.get('/admin', pelicula_controller_1.getPeliculas);
 router.get('/nuevo', pelicula_controller_1.mostrarRegistro);
