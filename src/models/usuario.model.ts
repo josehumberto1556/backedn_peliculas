@@ -1,5 +1,8 @@
 import { DataTypes, Model, Optional } from 'sequelize';
-import {sequelize} from '../config/database'; // Asume que tienes un archivo de configuración de DB
+//local
+// import {sequelize} from '../config/database';
+//no local
+import sequelize from '../config/database';
 
 interface UsuarioAttributes {
   id: number;

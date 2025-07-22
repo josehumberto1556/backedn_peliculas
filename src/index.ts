@@ -5,7 +5,11 @@ import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 
-import { connectDB } from './config/database'; 
+//local
+//import { connectDB } from './config/database'; 
+//import connectDB  from './config/database'; 
+//no local
+import sequelize  from './config/database'; 
 // --- Importar todas las rutas y el middleware ---
 import usuarioRoutes from './routes/usuario.routes'; 
 import peliculaRoutes from './routes/pelicula.routes';
@@ -67,7 +71,9 @@ app.use((req, res, next) => {
 });
 
 const startServer = async () => {
-  await connectDB();
+  //await connectDB();local
+  //no local
+  await sequelize.authenticate();
   app.listen(PORT, () => {
     console.log(`Escuchando desde el puerto http://localhost:${PORT}`);
     console.log(`Environment: ${process.env.NODE_ENV}`);

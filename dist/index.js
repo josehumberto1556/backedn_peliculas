@@ -9,7 +9,11 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
-const database_1 = require("./config/database");
+//local
+//import { connectDB } from './config/database'; 
+//import connectDB  from './config/database'; 
+//no local
+const database_1 = __importDefault(require("./config/database"));
 // --- Importar todas las rutas y el middleware ---
 const usuario_routes_1 = __importDefault(require("./routes/usuario.routes"));
 const pelicula_routes_1 = __importDefault(require("./routes/pelicula.routes"));
@@ -56,7 +60,9 @@ app.use((req, res, next) => {
     res.status(404).render('404'); // Renderiza la vista '404.ejs'
 });
 const startServer = async () => {
-    await (0, database_1.connectDB)();
+    //await connectDB();local
+    //no local
+    await database_1.default.authenticate();
     app.listen(PORT, () => {
         console.log(`Escuchando desde el puerto http://localhost:${PORT}`);
         console.log(`Environment: ${process.env.NODE_ENV}`);

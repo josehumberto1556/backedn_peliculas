@@ -1,8 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Usuario = void 0;
 const sequelize_1 = require("sequelize");
-const database_1 = require("../config/database"); // Asume que tienes un archivo de configuración de DB
+//local
+// import {sequelize} from '../config/database';
+//no local
+const database_1 = __importDefault(require("../config/database"));
 class Usuario extends sequelize_1.Model {
 }
 exports.Usuario = Usuario;
@@ -46,7 +52,7 @@ Usuario.init({
     },
 }, {
     tableName: 'usuarios',
-    sequelize: database_1.sequelize,
+    sequelize: database_1.default,
     timestamps: true, // Esto maneja created_at y updated_at automáticamente
     underscored: true, // Para usar `created_at` en lugar de `createdAt` en la DB
 });

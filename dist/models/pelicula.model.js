@@ -1,9 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Pelicula = void 0;
 // src/models/pelicula.model.ts
 const sequelize_1 = require("sequelize");
-const database_1 = require("../config/database");
+//local
+// import { sequelize } from '../config/database'; 
+//no local
+const database_1 = __importDefault(require("../config/database"));
 class Pelicula extends sequelize_1.Model {
 }
 exports.Pelicula = Pelicula;
@@ -37,6 +43,6 @@ Pelicula.init({
 }, {
     tableName: 'peliculas', // Asegúrate de que esto coincida con el nombre de tu tabla
     sequelize: // Asegúrate de que esto coincida con el nombre de tu tabla
-    database_1.sequelize,
+    database_1.default,
 });
 //# sourceMappingURL=pelicula.model.js.map

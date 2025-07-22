@@ -1,6 +1,9 @@
 // src/models/pelicula.model.ts
 import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '../config/database'; 
+//local
+// import { sequelize } from '../config/database'; 
+//no local
+import  sequelize  from '../config/database'; 
 
 interface PeliculaAttributes {
     id: number;

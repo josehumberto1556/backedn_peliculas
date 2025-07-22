@@ -1,26 +1,44 @@
 {
   "development": {
-    "username": "root",                 
-    "password": "",  
-    "database":"db_peliculas",                   
+    "username": "root",
+    "password": "",
+    "database":"db_peliculas",
     "host": "localhost",
     "dialect": "mysql",
     "port": 3306
   },
   "test": {
-    "username": "root",                
-    "password": "",                    
-    "database": "your_mysql_database_name_test", 
+    "username": "root",
+    "password": "",
+    "database": "your_mysql_database_name_test",
     "host": "localhost",
     "dialect": "mysql",
     "port": 3306
   },
   "production": {
-    "username": "your_prod_db_username", 
-    "password": "your_prod_db_password",
-    "database": "your_prod_database_name", 
-    "host": "your_prod_db_host",        
+    "username": {
+      "__parsed_literal__": "process.env.DB_USER"
+    },
+    "password": {
+      "__parsed_literal__": "process.env.DB_PASSWORD"
+    },
+    "database": {
+      "__parsed_literal__": "process.env.DB_DATABASE"
+    },
+    "host": {
+      "__parsed_literal__": "process.env.DB_HOST"
+    },
     "dialect": "mysql",
-    "port": 3306
+    "port": {
+      "__parsed_literal__": "process.env.DB_PORT"
+    },
+    "dialectOptions": {
+      "ssl": {
+        "ca": {
+          "__parsed_literal__": "require('fs').readFileSync(process.env.DB_CA_CERT_PATH)"
+        },
+        "rejectUnauthorized": true
+      }
+    }
   }
 }
