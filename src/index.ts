@@ -28,7 +28,9 @@ app.use(morgan('dev'));
 // 2. MIDDLEWARE DE CORS
 
 app.use(cors({
-  origin: ['http://localhost:5173'], // Reemplaza con la URL de tu frontend(s)
+  origin: ['https://frontend-peliculas-gsaf.onrender.com/'],
+  //local
+  //origin: ['http://localhost:5173'], // Reemplaza con la URL de tu frontend(s)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Métodos HTTP que tu API soporta
   //allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras que tu frontend puede enviar
  // credentials: true // Si vas a usar cookies o cabeceras de autorización
