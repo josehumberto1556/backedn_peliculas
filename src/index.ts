@@ -28,7 +28,7 @@ app.use(morgan('dev'));
 // 2. MIDDLEWARE DE CORS
 
 app.use(cors({
-  origin: ['https://frontend-peliculas-gsaf.onrender.com/'],
+  origin: ['https://frontend-peliculas-gsaf.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   credentials: true, // Permite el envío de cookies, encabezados de autorización, etc.
   optionsSuccessStatus: 204 // Para navegadores antiguos

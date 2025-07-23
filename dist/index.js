@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 4000;
 app.use((0, morgan_1.default)('dev'));
 // 2. MIDDLEWARE DE CORS
 app.use((0, cors_1.default)({
-    origin: ['https://frontend-peliculas-gsaf.onrender.com/'],
+    origin: ['https://frontend-peliculas-gsaf.onrender.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true, // Permite el envío de cookies, encabezados de autorización, etc.
     optionsSuccessStatus: 204 // Para navegadores antiguos
