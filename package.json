@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc && npm run copy-assets",
+    "build": "npx tsc",
     "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon dist/index.js\"",
     "start": "node dist/index.js",
     "copy-assets": "cpx \"src/views/**/*.ejs\" dist/views && cpx \"public/css/**/*.css\" dist/public/css",
