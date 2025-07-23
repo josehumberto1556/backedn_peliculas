@@ -26,8 +26,13 @@ const PORT = process.env.PORT || 4000;
 app.use((0, morgan_1.default)('dev'));
 // 2. MIDDLEWARE DE CORS
 app.use((0, cors_1.default)({
-    origin: ['http://localhost:5173'], // Reemplaza con la URL de tu frontend(s)
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Métodos HTTP que tu API soporta
+    origin: ['https://frontend-peliculas-gsaf.onrender.com/'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    credentials: true, // Permite el envío de cookies, encabezados de autorización, etc.
+    optionsSuccessStatus: 204 // Para navegadores antiguos
+    //local
+    //origin: ['http://localhost:5173'], // Reemplaza con la URL de tu frontend(s)
+    // Métodos HTTP que tu API soporta
     //allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras que tu frontend puede enviar
     // credentials: true // Si vas a usar cookies o cabeceras de autorización
 }));
